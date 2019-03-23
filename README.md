@@ -8,4 +8,5 @@ I believe my creation will play better than me
 1) preparation.ipynb - это для подготовки даты из игр профессионалов (нужно только для обучения модели)
 2) nn.ipynb - обучение
 3) UI.ipynb - красивая доска для игры вдвоем не без помощи модели
-4) darinkim.py - мой агент
+4) darinkim2.py - мой последний агент, но он может не работать
+5) darinkim.py - надежный
