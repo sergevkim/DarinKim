@@ -1,16 +1,16 @@
-import logging
-import os
-import random
+import sys
 
-import backend
 import numpy as np
-import renju
+
+import tensorflow as tf
+from tensorflow.python.keras.models import *
 
 LETTERS = 'abcdefghjklmnop'
 NUMBERS = [i for i in range(1, 16)]
 
 turn = 0
 
+model = load_model('night_model.hdf5')
 
 class Position:
     def __init__(self, turn, seq, label=None):
@@ -43,67 +43,43 @@ def to_seq(game):
     return seq
 
 
-    
-def choose_clever_move(board):
-    positions = renju.list_positions(board, renju.Player.NONE)
-    positions2 = positions[:-2] #<<<<<<<<<<<<< ask have I to destroy \n at the end
+
+def choose_clever_move(boardStr):
+    #positions = renju.list_positions(board, renju.Player.NONE)
+    positions = boardStr
+    positions2 = positions[:] #<<<<<<<<<<<<< ask have I to destroy \n at the end
     positionsList = list(map(str, positions2.split()))
     if turn % 2 == 0:
         curPlayer = 1
     else:
         curPlayer = -1
-    
-    
+
+
     curTablePos = Position(turn=curPlayer, seq=to_seq(positionsList))
-    
+
     win_condition = 1 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< DONT FORGET
-    
+
     table_for_model = np.empty((15, 15, 3))
     for i in range(3):
         table_for_model[:,:,i] = curTablePos.image[i,:,:]
-    
+
     y = model.predict_proba(np.array([table_for_model]))
-    
+
     answer_class = np.argmax(y)
     answer_tuple = (answer_class // 15, answer_class % 15)
     answer_coords = LETTERS[answer_tuple[1]] + str(NUMBERS[answer_tuple[0]])
-    
+
     return answer_coords
 
 def main():
-    '''
-    pid = os.getpid()
-    LOG_FORMAT = str(pid) + ':%(levelname)s:%(asctime)s: %(message)s'
-
-    logging.basicConfig(format=LOG_FORMAT, level=logging.DEBUG)
-    logging.debug("Start dummy backend...")
-    '''
-    model = load_model('night_model.hdf5')
 
     while True:
-        '''
-        logging.debug("Wait for game update...")
-        game = backend.wait_for_game_update()
-
-        if not game:
-            logging.debug("Game is over!")
-            return
-
-        logging.debug('Game: [%s]', game.dumps())
-        '''
         boardStr = sys.stdin.readline()
         if not boardStr:
             break
 
         move = choose_clever_move(boardStr)
 
-        '''
-        if not backend.set_move(move):
-            logging.error("Impossible set move!")
-            return
-
-        logging.debug('Random move: %s', move)
-        '''
         sys.stdout.write(move + '\n')
         sys.stdout.flush()
 
