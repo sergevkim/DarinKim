@@ -61,7 +61,7 @@ def win_condition(cells, color):
                     break
             if counter == 4:
                 return empty_cell_id
-    
+
     for j in range(15):
         for i in range(11):
             counter = 0
@@ -75,7 +75,7 @@ def win_condition(cells, color):
                     break
             if counter == 4:
                 return empty_cell_id
-    
+
     for i in range(11):
         for j in range(11):
             counter = 0
@@ -90,7 +90,7 @@ def win_condition(cells, color):
             if counter == 4:
                 for k in range(5):
                     return empty_cell_id
-                
+
     for i in range(11):
         for j in range(4, 15):
             counter = 0
@@ -128,9 +128,13 @@ def choose_clever_move(boardStr):
     first = win_condition(curTablePos.board, color=1)
     second = win_condition(curTablePos.board, color=-1)
     if first[0] != -1:
-        return first
+        answer_tuple = first
+        answer_coords = LETTERS[answer_tuple[1]] + str(NUMBERS[answer_tuple[0]])
+        return answer_tuple
     if second[0] != -1:
-        return second
+        answer_tuple = second
+        answer_coords = LETTERS[answer_tuple[1]] + str(NUMBERS[answer_tuple[0]])
+        return answer_tuple
 
     table_for_model = np.empty((15, 15, 3))
     for i in range(3):
@@ -150,7 +154,7 @@ def main():
         boardStr = sys.stdin.readline()
         if not boardStr:
             break
-        
+
         move = choose_clever_move(boardStr)
 
         sys.stdout.write(move + '\n')
