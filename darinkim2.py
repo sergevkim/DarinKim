@@ -54,7 +54,7 @@ def win_condition(cells, color):
             for k in range(5):
                 if cells[i][j + k] == color:
                     counter += 1
-                elif cells[i][j + k] == 'empty':
+                elif cells[i][j + k] == 0:
                     empty_cell_id = (i, j + k)
                 else:
                     counter = 0
@@ -68,7 +68,7 @@ def win_condition(cells, color):
             for k in range(5):
                 if cells[i + k][j] == color:
                     counter += 1
-                elif cells[i + k][j] == 'empty':
+                elif cells[i + k][j] == 0:
                     empty_cell_id = (i + k, j)
                 else:
                     counter = 0
@@ -82,7 +82,7 @@ def win_condition(cells, color):
             for k in range(5):
                 if cells[i + k][j + k] == color:
                     counter += 1
-                elif cells[i + k][j + k] == 'empty':
+                elif cells[i + k][j + k] == 0:
                     empty_cell_id = (i + k, j + k)
                 else:
                     counter = 0
@@ -97,7 +97,7 @@ def win_condition(cells, color):
             for k in range(5):
                 if cells[i + k][j - k] == color:
                     counter += 1
-                elif cells[i + k][j - k] == 'empty':
+                elif cells[i + k][j - k] == 0:
                     empty_cell_id = (i + k, j - k)
                 else:
                     counter = 0
@@ -163,3 +163,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+~                
