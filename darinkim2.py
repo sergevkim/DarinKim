@@ -130,11 +130,11 @@ def choose_clever_move(boardStr):
     if first[0] != -1:
         answer_tuple = first
         answer_coords = LETTERS[answer_tuple[1]] + str(NUMBERS[answer_tuple[0]])
-        return answer_tuple
+        return answer_coords
     if second[0] != -1:
         answer_tuple = second
         answer_coords = LETTERS[answer_tuple[1]] + str(NUMBERS[answer_tuple[0]])
-        return answer_tuple
+        return answer_coords
 
     table_for_model = np.empty((15, 15, 3))
     for i in range(3):
