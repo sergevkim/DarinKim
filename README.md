@@ -12,4 +12,4 @@ I believe my creation will play better than me
 
 ![Screenshot](/images/BOARD_EXAMPLE.png)
 
-Чтобы поиграть с ботом, необходимо запустить ноутбук user_interface.ipynb. После каждого хода в кнопке под словом "Prediction" будет публиковаться рекомендуемый ботом ход. Пояснительная записка - Ким ПЗ.pdf. 
+Чтобы поиграть с ботом, необходимо запустить ноутбук user_interface.ipynb. После каждого хода в кнопке под словом "Prediction" будет публиковаться рекомендуемый ботом ход. Пояснительная записка - explanation_note.pdf. 
