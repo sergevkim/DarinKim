@@ -10,4 +10,4 @@ I believe my creation will play better than me
 3) UI.ipynb - красивая доска для игры вдвоем с подсказками модели, для ее запуска необходима night_model.hdf5 и папка images
 4) darinkim2.py - мой агент
 
-![Screenshot](/images/board_example.png)
+![Screenshot](/images/BOARD_EXAMPLE.png)
